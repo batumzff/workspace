@@ -208,3 +208,118 @@ console.log("SUM-ALL:", sumAll(3, 4, 5))
 //* =============================================
 //*  SPREAD (...)
 //* =============================================
+
+const ucanAraclar = ["helicopter", "drone", "ucak", "fuze"]
+const karaAracları = ["araba", "bisiklet", "marti"]
+
+const tasitlar = [ucanAraclar, karaAracları] //!nested array
+console.log(tasitlar)
+console.log(tasitlar[1][2])
+
+const tasitlarFlat = [...karaAracları, "hoverCraft", "gemi", ...ucanAraclar]
+console.log(tasitlarFlat)
+
+//?Ornek:
+const slogan = "Reinvent Your self"
+const sloganArray = [...slogan]
+console.log(sloganArray)
+
+//?Ornek:
+//? Spread ile bir iterable(array), non-iterable'a cevirlebilir.
+const sayilar = [2, 4, 5, 13, 56, 23]
+console.log(Math.max(...sayilar))
+const ciftler = [2, 4, 6]
+const tekler = [1, 3, 5]
+
+const yeniSayilar = ciftler //? Sig Kopyalama (Derin Kopyalama)
+
+console.log(yeniSayilar, ciftler)
+yeniSayilar.push(8)
+console.log(yeniSayilar, ciftler)
+
+//? Kopyalama Spread ile yapilirsa
+const yeniArraySpread = [...ciftler]
+console.log(yeniArraySpread, ciftler)
+
+//? Spread ile yapılan kopyalamada tam olarak sig kopyalama gerceklesmez. Dolayısiyla birisindeki degisiklik digerine yansımaz.
+//? ISTISNA: Eger dizide nesting (içiçe veri) varsa onlar icin sig kopyalama gibi calisir.
+yeniArraySpread.push(10)
+console.log(yeniArraySpread, ciftler)
+
+//? Tamamen Deep Kopyalama icin JSON.stringfy() - JSON.parse()
+
+//? Object copying
+
+const firstObj = { a: 1, b: 2, c: 3 }
+const secondObj = { a: 2, d: 3, c: 4 }
+
+const copiedFirstObj = { ...firstObj }
+console.log(copiedFirstObj)
+
+copiedFirstObj.a = 44
+
+//? nesting olmadigi icin deep copy gibi davranir.
+console.log(copiedFirstObj, firstObj)
+
+const combinedObjs = { ...firstObj, ...secondObj }
+console.log(combinedObjs)
+
+//? nested
+const people = {
+  person1: {
+    name: "Can",
+    surname: "Canan",
+    dob: "1990",
+    job: "developer",
+    salary: "140000",
+    drivingLicense: true,
+  },
+  person2: {
+    name: "John",
+    surname: "Sweet",
+    dob: "1990",
+    job: "tester",
+    salary: "110000",
+    drivingLicense: false,
+  },
+  person3: {
+    name: "Steve",
+    surname: "Job",
+    dob: "2000",
+    job: "developer",
+    salary: "90000",
+    drivingLicense: true,
+  },
+}
+
+console.log("MAAAS:", people.person3.salary)
+
+//! FOR - IN
+//* for (key in object) {
+//*   // code block to be executed
+//* }
+
+for (let p in people) {
+  // console.log(p)
+  // console.log(people[p]) //? square bracket notasyon
+  console.log(people[p].salary) //? square bracket notasyon
+}
+
+//? Javascript'de Objeler default olarak iterable degildir.
+//? Ama for in ve for of donguleri ile itere edilebilirler.
+
+//? Objelerin key ve value'larini okumak icin built-in metotlar vardir.
+//? Bu mettotlar aslinda objelerin key ve/veya value'lari bir dizi olarak dondurur.
+console.log(Object.keys(people))
+console.log(Object.values(people))
+console.log(Object.entries(people))
+
+//! FOR - OF
+//* for (x of iterable) {
+//*   code block to be executed
+//* }
+
+console.log("****************")
+for (let key of Object.keys(people)) {
+  console.log(key)
+}
