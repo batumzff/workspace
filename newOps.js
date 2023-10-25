@@ -1,4 +1,4 @@
-console.log("** NEW OPERATORS **");
+console.log("** NEW OPERATORS **")
 
 //* =============================================
 //*  DESTRUCTURING (OBJECT)
@@ -45,25 +45,25 @@ const insanlar = {
     meslek: "Sosyal Gelişim Uzmanı",
     maas: 25000,
   },
-};
+}
 
-console.log("MAAS:", insanlar.kisi1.maas);
+console.log("MAAS:", insanlar.kisi1.maas)
 
 //? Destr.
 //? 1. yontem
-const { kisi1, kisi2 } = insanlar; //? Leve1 dest.
-console.log(kisi1);
+const { kisi1, kisi2 } = insanlar //? Leve1 dest.
+console.log(kisi1)
 
-const { kimlikNo: kisi1Kimlik, adi: kisi1Adi, soyadi: kisi1Soyadi } = kisi1; //?Level2
-const { kimlikNo: kisi2Kimlik, adi: kisi2Adi, soyadi: kisi2Soyadi } = kisi2;
-console.log(kisi2Kimlik);
+const { kimlikNo: kisi1Kimlik, adi: kisi1Adi, soyadi: kisi1Soyadi } = kisi1 //?Level2
+const { kimlikNo: kisi2Kimlik, adi: kisi2Adi, soyadi: kisi2Soyadi } = kisi2
+console.log(kisi2Kimlik)
 
 //?2. yontem
 const {
   kisi1: { soyadi, adi },
-} = insanlar; //? nested destr.
+} = insanlar //? nested destr.
 
-console.log(soyadi);
+console.log(soyadi)
 
 //* Example
 const team = [
@@ -85,27 +85,27 @@ const team = [
     job: "team lead",
     age: 40,
   },
-];
-console.log("************");
+]
+console.log("************")
 
 //? Klasik yontem ile
 team.forEach((p) => {
-  console.log("NAME:", p.name);
-  console.log("SURNAME:", p.surname);
-  console.log("JOB:", p["job"]);
-  console.log("AGE:", p["age"]);
-});
+  console.log("NAME:", p.name)
+  console.log("SURNAME:", p.surname)
+  console.log("JOB:", p["job"])
+  console.log("AGE:", p["age"])
+})
 
 //? Destr
-console.log("**** DEST ****");
+console.log("**** DEST ****")
 team.forEach((person) => {
-  const { name, surname, age, job } = person;
-  console.log("NAME:", name);
-  console.log("SURNAME:", surname);
-  console.log("JOB:", job);
-  console.log("AGE:", age);
-  console.log("------------");
-});
+  const { name, surname, age, job } = person
+  console.log("NAME:", name)
+  console.log("SURNAME:", surname)
+  console.log("JOB:", job)
+  console.log("AGE:", age)
+  console.log("------------")
+})
 
 //!----  FUNCTIONLARDA DESTRUC. KULLANIMI ----
 // function kisiOkuDeclaration () {
@@ -118,16 +118,16 @@ const kisiOku = function () {
     soyisim: "Can",
     is: "Kasap",
     dilSayisi: 2,
-  };
-};
+  }
+}
 
 // console.log("KİSİ:", kisiOku())
 
 //* function'un dondurdugu obje dogrudan dest. yapilabilir
-let { no, isim, soyisim, dilSayisi } = kisiOku();
+let { no, isim, soyisim, dilSayisi } = kisiOku()
 
-dilSayisi++;
-console.log(no, isim, dilSayisi);
+dilSayisi++
+console.log(no, isim, dilSayisi)
 
 //? Parameter olarak objenin ve destr. kullanimi
 const data = {
@@ -135,34 +135,76 @@ const data = {
   brand: "Apple",
   product: "Iphone15",
   stock: 100,
-};
+}
 
 const productPrint = (data) => {
-  console.log(`${data.brand}-${data["product"]}: ${data.stock}`);
-};
+  console.log(`${data.brand}-${data["product"]}: ${data.stock}`)
+}
 
 const productPrintDestr = (data) => {
-  const { brand, product, stock } = data;
-  console.log(`${brand}-${product}: ${stock}`);
-};
+  const { brand, product, stock } = data
+  console.log(`${brand}-${product}: ${stock}`)
+}
 
 //? Alternatif destr (Havada veya Yolda)
 const productPrintDestrV2 = ({ brand, product, stock }) => {
-  console.log(`${brand}-${product}: ${stock}`);
-};
+  console.log(`${brand}-${product}: ${stock}`)
+}
 
-productPrint(data);
-productPrintDestr(data);
-productPrintDestrV2(data);
+productPrint(data)
+productPrintDestr(data)
+productPrintDestrV2(data)
 
 //* =============================================
 //*  DESTRUCTURING (ARRAY)
 //* =============================================
+const people = ["Ali", "Veli", "Can", "Canan"]
+
+console.log(people[1])
+
+//? Array destr. sıra önemlidir.
+const [p1, p2, , p4] = people
+console.log(p4)
 
 //* ==============================================
 //*  REST (...)
 //* =============================================
+//? REST operatoru kullanici tarafindan girilen degerleri dizi
+//? icerisine konumlandirir. Cesitli kullanim alanlari vardir.
 
-//* ==============================================
+//! 1- Bir dizi veya object'deki bazi degerlerden geri kalanlarini
+//!    ayri dizi yada objelere kopyalanmasini saglayabilir.
+
+//?REST: Array
+const araclar = ["ATV", "Kamyonet", "TIR", "Kamyon", "Araba"]
+const [a1, a2, ...geriKalanAraclar] = araclar
+console.log(geriKalanAraclar) //? ["Kamyonet", "TIR", "Kamyon"]
+
+//?REST: Object
+const veri = {
+  id: "1",
+  brand: "Apple",
+  product: "Iphone15",
+  stock: 100,
+}
+
+const { id, product, ...productStock } = veri
+console.log(productStock)
+
+//! 2- Bir fonksiyonun argumanlarini diziye cevirmek icin kullanilabilir.
+
+const sum = (a, b) => a + b
+
+//? REST (...) ile non-iterable olan sayilari iterable hale (diziye) cevirmiş olduk.
+const sumAll = (...numbers) => {
+  // console.log(numbers)
+  return numbers.reduce((acc, val) => acc + val)
+}
+
+console.log("SUM:", sum(2, 5, 6, 7, 8))
+console.log("SUM-ALL:", sumAll(2, 5, 6, 7, 8))
+console.log("SUM-ALL:", sumAll(3, 4, 5))
+
+//* =============================================
 //*  SPREAD (...)
 //* =============================================
