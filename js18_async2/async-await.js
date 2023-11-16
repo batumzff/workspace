@@ -41,10 +41,10 @@ const getNews = async () => {
     const newsDiv = document.getElementById("news-div")
   
     news.forEach((item) => {
-      console.log(item)
       const { title, urlToImage, url, content } = item
       newsDiv.innerHTML += `
-          <div class="card" style="width: 18rem;">
+      <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="card">
               <img src="${urlToImage}" class="card-img-top" alt="...">
               <div class="card-body">
                   <h5 class="card-title">${title}</h5>
@@ -52,6 +52,7 @@ const getNews = async () => {
                   <a href="${url}" target="_blank" class="btn btn-primary">Detail</a>
               </div>
           </div>
+      </div>
       `
     })
   }
