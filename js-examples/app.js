@@ -43,18 +43,37 @@ A palindrome is word, phrase, or sequence that reads the same backward as forwar
 // Example string : 'dog'
 // Expected Output : d,do,dog,o,og,g
 
-let exampleString = "dog";
-let expectedOutput = ["d", "do", "dog", "og", "g"];
-let solution = function (str) {
-  let result = [];
-  
-  for (let i = 0; i < str.length; i++) {
-    for (let j = i + 1 ; j <= str.length; j++){
-        result.push(str.slice(i,j))// slice ( ilk indis, hangi indisten bir küçüğüne kadar alsın)
-    }
-    return result
-  }
+// let exampleString = "dog";
+// let expectedOutput = ["d", "do", "dog", "og", "g"];
+// let solution = function (str) {
+//   let result = [];
+
+//   for (let i = 0; i < str.length; i++) {
+//     for (let j = i + 1 ; j <= str.length; j++){
+//         result.push(str.slice(i,j))// slice ( ilk indis, hangi indisten bir küçüğüne kadar alsın)
+//     }
+//   }
+//   return result;
+// };
+
+// console.log(solution(exampleString))
+
+// !4.Write a JavaScript function that returns a string that has letters in alphabetical order.
+// Example string : 'webmaster'
+// Expected Output : 'abeemrstw'
+// Assume punctuation and numbers symbols are not included in the passed string.
+
+// const alphabeticOrder = (word) => {
+//   return word.split("").sort().join("");
+// };
+
+// console.log(alphabeticOrder("webmaster"));
+
+// !5. Write a JavaScript function that accepts a string as a parameter and converts the first letter of each word into upper case.
+// Example string : 'the quick brown fox'
+// Expected Output : 'The Quick Brown Fox '
+
+const firstUpperCase = (str) => {
+  str.split(" ").toUpperCase();
 };
-
-
-console.log(solution(exampleString))
+console.log(firstUpperCase("the quick brown fox"));
